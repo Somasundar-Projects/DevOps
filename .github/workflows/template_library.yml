@@ -23,6 +23,8 @@ on:
         description: "Target frameworks"
         required: true
         default: "net8.0;net9.0"
+env:
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   scaffold:

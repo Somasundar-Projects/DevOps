@@ -76,7 +76,7 @@ $NewPath = Join-Path -Path "./tests/$NewProjectName.Tests" -ChildPath "$NewProje
 Rename-Item -Path $OldPath -NewName (Split-Path $NewPath -Leaf)
 
 # Create new GitHub repo using gh CLI
-gh repo create "$GitHubOrg/$NewRepoName" --public --confirm
+gh repo create "$NewProjectName" --public --source=. --remote=origin --push
 
 # Push to new repo
 # git remote remove origin
