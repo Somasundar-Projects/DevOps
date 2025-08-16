@@ -1,0 +1,41 @@
+name: Dotnet Build, Test and Publish
+
+on:
+  workflow_call:
+    inputs:
+      project_path:
+        type: string
+        default: "."
+        required: false
+      dotnet-versions:
+        type: string
+        description: 'Comma-separated list of .NET versions (e.g.: ''["8.x","9.x"]'')'
+        required: false
+        default: '["8.x","9.x"]'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        versions: ${{ fromJSON(inputs.dotnet-versions) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.versions }}
+
+      - name: Restore
+        run: dotnet restore ${{ inputs.project_path }}
+
+      - name: Build
+        run: dotnet build ${{ inputs.project_path }} --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test ${{ inputs.project_path }} --configuration Release --no-restore --no-build
+
+      - name: Publish
+        run: dotnet publish ${{ inputs.project_path }} --configuration Release --no-restore --no-build
