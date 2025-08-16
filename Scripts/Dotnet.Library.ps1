@@ -9,6 +9,7 @@ param(
     [string]$TemplateRepo = "Somasundar-Projects/DevOps",
     # [Parameter(Mandatory = $true)]
     [string]$TargetFrameworks = "net8.0;net9.0"
+    [string]$GitHubUser = "Somasundar-Dev"
 )
 
 # Temp working folder
@@ -78,6 +79,8 @@ Rename-Item -Path $OldPath -NewName (Split-Path $NewPath -Leaf)
 # Create new GitHub repo using gh CLI
 if (-not (Test-Path ".git")) {
     git config --global init.defaultBranch main
+    git config --global user.name "Github Actions"
+    git config --global user.email "$GitHubUser@users.noreply.github.com"
     git init
     git add .
     git commit -m "Initial commit from Repo Template"
