@@ -23,6 +23,10 @@ on:
         description: "Target frameworks"
         required: true
         default: "net8.0;net9.0"
+      GitHubUser:
+        description: "GitHub username"
+        required: true
+        default: "Somasundar-Dev"
 env:
   GH_TOKEN: ${{ github.token }}
 
@@ -37,4 +41,4 @@ jobs:
         shell: pwsh
         working-directory: ./Scripts
         run: |
-          .\Dotnet.Library.ps1 -NewRepoName "${{ github.event.inputs.NewRepoName }}" -NewProjectName "${{ github.event.inputs.NewProjectName }}" -GitHubOrg "${{ github.event.inputs.GitHubOrg }}" -TemplateRepo "${{ github.event.inputs.TemplateRepo }}" -TargetFrameworks "${{ github.event.inputs.TargetFrameworks }}"
+          .\Dotnet.Library.ps1 -NewRepoName "${{ github.event.inputs.NewRepoName }}" -NewProjectName "${{ github.event.inputs.NewProjectName }}" -GitHubOrg "${{ github.event.inputs.GitHubOrg }}" -TemplateRepo "${{ github.event.inputs.TemplateRepo }}" -TargetFrameworks "${{ github.event.inputs.TargetFrameworks }}" -GitHubUser "${{ github.event.inputs.GitHubUser }}"
