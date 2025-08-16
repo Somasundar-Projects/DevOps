@@ -28,14 +28,24 @@ jobs:
         with:
           dotnet-version: ${{ matrix.versions }}
 
+      - name: Get framework moniker
+        id: framework
+        run: |
+          VERSION="${{ matrix.versions }}"
+          CLEANED="${VERSION%.x}"   # removes the trailing .x
+          echo "FRAMEWORK=net$CLEANED" >> $GITHUB_OUTPUT
+
+      - name: Show result
+        run: echo "Framework is ${{ steps.framework.outputs.FRAMEWORK }}"
+
       - name: Restore
-        run: dotnet restore ${{ inputs.project_path }} -f ${{ matrix.versions}}
+        run: dotnet restore ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }}
 
       - name: Build
-        run: dotnet build ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore
+        run: dotnet build ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }} --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore --no-build
+        run: dotnet test ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }} --configuration Release --no-restore --no-build
 
       - name: Publish
-        run: dotnet publish ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore --no-build
+        run: dotnet publish ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }} --configuration Release --no-restore --no-build
