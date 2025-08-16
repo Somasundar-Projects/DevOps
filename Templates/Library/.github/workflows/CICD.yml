@@ -1,0 +1,17 @@
+name: Template.Library CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  dotnet-ci:
+    uses: Somasundar-Projects/DevOps/.github/workflows/dotnet_build.yml@main
+    with:
+      dotnet-versions: "Template.Library.CICD.TargetFrameworks"
+      project_path: "Template.Library.sln"
