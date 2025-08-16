@@ -36,7 +36,7 @@ if (Test-Path $githubPath) {
     $githubFiles = Get-ChildItem -Path $githubPath -Recurse -File
     foreach ($file in $githubFiles) {
         (Get-Content $file.FullName) |
-            ForEach-Object { $_ -replace "Template.Library.CICD.TargetFrameworks", $frameworkVersionString } |
+            ForEach-Object { $_ -replace 'Template.Library.CICD.TargetFrameworks', $frameworkVersionString } |
             ForEach-Object { $_ -replace "Template.Library", $NewProjectName } |
             Set-Content $file.FullName
     }
