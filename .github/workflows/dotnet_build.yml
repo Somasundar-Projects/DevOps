@@ -33,7 +33,7 @@ jobs:
         run: |
           VERSION="${{ matrix.versions }}"
           CLEANED="${VERSION%.x}"   # removes the trailing .x
-          echo "FRAMEWORK=net$CLEANED" >> $GITHUB_OUTPUT
+          echo "FRAMEWORK=net$CLEANED.0" >> $GITHUB_OUTPUT
 
       - name: Show result
         run: echo "Framework is ${{ steps.framework.outputs.FRAMEWORK }}"
