@@ -78,7 +78,8 @@ Rename-Item -Path $OldPath -NewName (Split-Path $NewPath -Leaf)
 # Create new GitHub repo using gh CLI
 if (-not (Test-Path ".git")) {
     git init
-    git branch -m main
+    git add .
+    git commit -m "Initial commit from Repo Template"
 }
 gh repo create "$NewProjectName" --public --source=. --remote=origin --push
 
