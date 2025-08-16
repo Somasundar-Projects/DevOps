@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Template.Library</AssemblyName>
+  </PropertyGroup>
+  
+</Project>

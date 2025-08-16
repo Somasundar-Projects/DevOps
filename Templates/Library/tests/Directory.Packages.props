@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <!-- Common NuGet dependencies for all shared libs -->
+  <ItemGroup>
+    <PackageVersion Include="coverlet.collector" Version="Template.Library.Coverlet.Collector.Version" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="Template.Library.Microsoft.NET.Test.Sdk.Version" />
+    <PackageVersion Include="xunit" Version="Template.Library.Xunit.Version" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="Template.Library.Xunit.Runner.VisualStudio.Version" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <!-- Common NuGet dependencies for all shared libs -->
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="Template.Library.Logging.Abstractions.Version" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="Template.Library.Options.Version" />
+    <PackageVersion Include="Microsoft.AspNetCore.Http" Version="Template.Library.Http.Version" />
+  </ItemGroup>
+</Project>
