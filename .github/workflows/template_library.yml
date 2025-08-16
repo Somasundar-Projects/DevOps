@@ -19,7 +19,7 @@ on:
         default: "net8.0;net9.0"
 
 env:
-  GH_TOKEN: ${{ github.token }}
+  GH_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
 
 jobs:
   scaffold:
