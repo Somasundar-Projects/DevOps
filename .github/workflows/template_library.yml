@@ -1,0 +1,38 @@
+name: Create a new .NET library
+
+on:
+  workflow_dispatch:
+    inputs:
+      NewRepoName:
+        description: "Name of the new repository"
+        required: true
+        default: "SP.Core.Common"
+      NewProjectName:
+        description: "Name of the new project"
+        required: true
+        default: "SP.Core.Common"
+      GitHubOrg:
+        description: "GitHub organization name"
+        required: true
+        default: "Somasundar-Projects"
+      TemplateRepo:
+        description: "Template repository"
+        required: true
+        default: "Somasundar-Projects/DevOps"
+      TargetFrameworks:
+        description: "Target frameworks"
+        required: true
+        default: "net8.0;net9.0"
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run PowerShell script
+        shell: pwsh
+        working-directory: ./Scripts
+        run: |
+          .\Dotnet.Library.ps1 -NewRepoName "${{ github.event.inputs.NewRepoName }}" -NewProjectName "${{ github.event.inputs.NewProjectName }}" -GitHubOrg "${{ github.event.inputs.GitHubOrg }}" -TemplateRepo "${{ github.event.inputs.TemplateRepo }}" -TargetFrameworks "${{ github.event.inputs.TargetFrameworks }}"
