@@ -5,6 +5,7 @@
 
     <!-- Build settings -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>Template.Library</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>

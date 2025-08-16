@@ -15,6 +15,7 @@
     <!-- Build settings -->
     <!-- <GenerateDocumentationFile>true</GenerateDocumentationFile> -->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>Template.Library</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
