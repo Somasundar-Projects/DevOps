@@ -1,13 +1,13 @@
 param(
-    [Parameter(Mandatory = $true)]
-    [string]$NewRepoName,
-    [Parameter(Mandatory = $true)]
-    [string]$NewProjectName,
-    [Parameter(Mandatory = $true)]
-    [string]$GitHubOrg,
-    [Parameter(Mandatory = $true)]
-    [string]$TemplateRepo,
-    [Parameter(Mandatory = $true)]
+    # [Parameter(Mandatory = $true)]
+    [string]$NewRepoName = "SP.Core.Common",
+    # [Parameter(Mandatory = $true)]
+    [string]$NewProjectName = "SP.Core.Common",
+    # [Parameter(Mandatory = $true)]
+    [string]$GitHubOrg = "Somasundar-Projects",
+    # [Parameter(Mandatory = $true)]
+    [string]$TemplateRepo = "Somasundar-Projects/DevOps",
+    # [Parameter(Mandatory = $true)]
     [string]$TargetFrameworks = "net8.0;net9.0"
 )
 
@@ -27,6 +27,7 @@ $frameworkVersions = $TargetFrameworks.Split(';') | ForEach-Object {
     }
 }
 $frameworkVersionString = $frameworkVersions -join ';'
+$frameworkVersionString = "'" + ($frameworkVersionString.Split(';') | ConvertTo-Json -Compress) + "'"
 
 # Handle .github folder separately
 $githubPath = "./.github/workflows"
@@ -35,7 +36,7 @@ if (Test-Path $githubPath) {
     $githubFiles = Get-ChildItem -Path $githubPath -Recurse -File
     foreach ($file in $githubFiles) {
         (Get-Content $file.FullName) |
-            ForEach-Object { $_ -replace "Template.Library.CICD.TargetFrameworks", ($frameworkVersionString.Split(';') | ConvertTo-Json -Compress) } |
+            ForEach-Object { $_ -replace "Template.Library.CICD.TargetFrameworks", $frameworkVersionString } |
             ForEach-Object { $_ -replace "Template.Library", $NewProjectName } |
             Set-Content $file.FullName
     }
@@ -78,9 +79,9 @@ Rename-Item -Path $OldPath -NewName (Split-Path $NewPath -Leaf)
 gh repo create "$GitHubOrg/$NewRepoName" --public --confirm
 
 # Push to new repo
-git remote remove origin
-git remote add origin "https://github.com/$GitHubOrg/$NewRepoName.git"
-git branch -M main
-git push -u origin main
+# git remote remove origin
+# git remote add origin "https://github.com/$GitHubOrg/$NewRepoName.git"
+# git branch -M main
+# git push -u origin main
 
 Write-Host "🎉 Repo $NewRepoName created and pushed!"

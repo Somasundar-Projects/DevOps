@@ -13,5 +13,5 @@ jobs:
   dotnet-ci:
     uses: Somasundar-Projects/DevOps/.github/workflows/dotnet_build.yml@main
     with:
-      dotnet-versions: Template.Library.CICD.TargetFrameworks
+      dotnet-versions: "Template.Library.CICD.TargetFrameworks"
       project_path: Template.Library.sln
