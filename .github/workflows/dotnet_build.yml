@@ -29,13 +29,13 @@ jobs:
           dotnet-version: ${{ matrix.versions }}
 
       - name: Restore
-        run: dotnet restore ${{ inputs.project_path }}
+        run: dotnet restore ${{ inputs.project_path }} -f ${{ matrix.versions}}
 
       - name: Build
-        run: dotnet build ${{ inputs.project_path }} --configuration Release --no-restore
+        run: dotnet build ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore
 
       - name: Test
-        run: dotnet test ${{ inputs.project_path }} --configuration Release --no-restore --no-build
+        run: dotnet test ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore --no-build
 
       - name: Publish
-        run: dotnet publish ${{ inputs.project_path }} --configuration Release --no-restore --no-build
+        run: dotnet publish ${{ inputs.project_path }} -f ${{ matrix.versions}} --configuration Release --no-restore --no-build
