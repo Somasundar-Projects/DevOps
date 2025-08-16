@@ -1,15 +1,16 @@
 param(
-    # [Parameter(Mandatory = $true)]
-    [string]$NewRepoName = "SP.Core.Common",
-    # [Parameter(Mandatory = $true)]
-    [string]$NewProjectName = "SP.Core.Common",
-    # [Parameter(Mandatory = $true)]
-    [string]$GitHubOrg = "Somasundar-Projects",
-    # [Parameter(Mandatory = $true)]
-    [string]$TemplateRepo = "Somasundar-Projects/DevOps",
-    # [Parameter(Mandatory = $true)]
-    [string]$TargetFrameworks = "net8.0;net9.0"
-    [string]$GitHubUser = "Somasundar-Dev"
+    [Parameter(Mandatory = $true)]
+    [string]$NewRepoName,
+    [Parameter(Mandatory = $true)]
+    [string]$NewProjectName,
+    [Parameter(Mandatory = $true)]
+    [string]$GitHubOrg,
+    [Parameter(Mandatory = $true)]
+    [string]$TemplateRepo,
+    [Parameter(Mandatory = $true)]
+    [string]$TargetFrameworks,
+    [Parameter(Mandatory = $true)]
+    [string]$GitHubUser
 )
 
 # Temp working folder
