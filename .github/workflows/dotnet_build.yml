@@ -39,7 +39,7 @@ jobs:
         run: echo "Framework is ${{ steps.framework.outputs.FRAMEWORK }}"
 
       - name: Restore
-        run: dotnet restore ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }}
+        run: dotnet restore ${{ inputs.project_path }}
 
       - name: Build
         run: dotnet build ${{ inputs.project_path }}  -f ${{ steps.framework.outputs.FRAMEWORK }} --configuration Release --no-restore
